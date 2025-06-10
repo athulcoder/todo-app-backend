@@ -1,0 +1,29 @@
+{
+  "name": "todo-app-backend",
+  "version": "1.0.0",
+  "description": "a backend for providing apis",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "todo",
+    "app",
+    "athulcoder",
+    "athulsabu"
+  ],
+  "author": "athulcoder",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "multer": "^2.0.1",
+    "prettier": "^3.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
