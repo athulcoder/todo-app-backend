@@ -18,5 +18,5 @@ router
   })
   .post("/login", loginUser);
 
-router.get("/logout", logoutUser);
+router.post("/logout", logoutUser);
 export const userRouter = router;

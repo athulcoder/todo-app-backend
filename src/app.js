@@ -19,11 +19,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/user", checkLogin, userRouter);
+app.use("/user", userRouter);
 
 app.get("/", checkUserAuth, (req, res) => {
   let user = req.user;
-  console.log(user);
   res.render("index", { user });
 });
 export default app;

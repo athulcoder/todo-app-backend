@@ -71,7 +71,7 @@ const loginUser = async (req, res) => {
 };
 
 const logoutUser = async (req, res) => {
-  // res.cookie("sessionid", null);
+  res.clearCookie("sessionid");
 
   res.redirect("/user/login");
 };

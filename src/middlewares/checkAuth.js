@@ -6,7 +6,7 @@ dotenv.config({
 });
 export function checkUserAuth(req, res, next) {
   const token = req.cookies.sessionid;
-  if (!token) res.redirect("/user/register");
+  if (!token) res.redirect("/user/login");
   else {
     try {
       const user = jwt.verify(token, process.env.SECRET_KEY);
@@ -22,7 +22,7 @@ export function checkUserAuth(req, res, next) {
 
 export function checkLogin(req, res, next) {
   const token = req.cookies.sessionid;
-  if (!token) res.redirect("/user/register");
+  if (!token) res.redirect("/user/login");
   else {
     try {
       const user = jwt.verify(token, process.env.SECRET_KEY);

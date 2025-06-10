@@ -7,26 +7,24 @@
   </head>
   <body>
     <h1>WELCOME <%= user.fullName %></h1>
-    <button
-      class="logout"
-      style="
-        padding: 10px;
-        width: 200px;
-        border: none;
-        background-color: red;
-        color: white;
 
-        cursor: pointer;
-      "
-    >
-      Logout me
-    </button>
+    <form action="/user/logout" method="post">
+      <button
+        class="logout"
+        style="
+          padding: 10px;
+          width: 200px;
+          border: none;
+          background-color: red;
+          color: white;
+          text-decoration: none;
+          cursor: pointer;
+          font-family: sans-serif;
+        "
+        type="submit"
+      >
+        Logout me
+      </button>
+    </form>
   </body>
-  <script>
-    let logoutButton = document.querySelector(".logout");
-    logoutButton.addEventListener("click", async () => {
-      let response = await fetch("/user/logout");
-      console.log(response.json());
-    });
-  </script>
 </html>
