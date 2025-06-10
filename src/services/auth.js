@@ -7,16 +7,10 @@ dotenv.config({
 export function generateSessionToken(user) {
   return jwt.sign(
     {
-      _id: user._id,
+      id: user._id,
+      email: user.email,
+      username: user.username,
     },
     process.env.SECRET_KEY
   );
-}
-
-export function checkAuth(token, req, res, next) {
-  try {
-    let user = jwt.verify(token, process.env.SECRET_KEY);
-  } catch (error) {
-    return null;
-  }
 }

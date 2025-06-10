@@ -3,7 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { userRouter } from "./routes/user.routes.js";
 import multer from "multer";
-import { checkAuth } from "./services/auth.js";
+import { checkUserAuth } from "./middlewares/checkAuth.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const update = multer();
@@ -15,10 +16,12 @@ app.set("view engine", "ejs");
 
 // middlewares
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", update.none(), userRouter);
-app.get("/", checkAuth, (req, res) => {
+
+app.get("/", checkUserAuth, (req, res) => {
   res.render("index");
 });
 export default app;
