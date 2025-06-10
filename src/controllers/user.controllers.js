@@ -50,24 +50,23 @@ const registerUser = async (req, res) => {
 
 // login user
 const loginUser = async (req, res) => {
-  // get email and password from form
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  // get a user with given data
+    // get a user with given data
 
-  let user = await User.findOne({ email });
+    let user = await User.findOne({ email });
 
-  let hashedPassword = user.password;
+    let hashedPassword = user.password;
 
-  let isPasswordCorrect = bcrypt.compare(password, hashedPassword);
-  if (!isPasswordCorrect)
-    res.send("invalid password or email").status(401).json({
-      message: "password is inccorect",
-    });
+    let isPasswordCorrect = await bcrypt.compare(password, hashedPassword);
 
-  let token = generateSessionToken(user);
-  res.cookie("sessionid", token);
-  res.redirect("/");
+    if (!isPasswordCorrect) res.send("invalid password or email");
+
+    let token = generateSessionToken(user);
+    res.cookie("sessionid", token);
+    res.redirect("/");
+  } catch (error) {}
 };
 
 const logoutUser = async (req, res) => {
