@@ -1,5 +1,7 @@
 import { User } from "../models/user.models.js";
 import bcrypt from "bcrypt";
+import { generateSessionToken } from "../services/auth.js";
+
 const registerUser = async (req, res) => {
   const { fullName, username, email, password } = req.body;
 
@@ -13,7 +15,6 @@ const registerUser = async (req, res) => {
   // checking user exists
   let existedUser = await User.findOne({ $or: [{ username }, { email }] });
 
-  console.log();
   if (existedUser) {
     return res.status(409).json({
       message: "User Already Exists",
@@ -31,7 +32,12 @@ const registerUser = async (req, res) => {
     password: hashedPassword,
   });
 
+  // generate Session Token
   await newUser.save();
+  let token = generateSessionToken(newUser._id);
+
+  res.cookie("sessionid", token);
+  res.redirect("index");
 
   res.status(201).json({
     message: "User created successfully",

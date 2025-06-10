@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { userRouter } from "./routes/user.routes.js";
 import multer from "multer";
+import { checkAuth } from "./services/auth.js";
 
 const app = express();
 const update = multer();
@@ -17,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/user", update.none(), userRouter);
-app.get("/", (req, res) => {
+app.get("/", checkAuth, (req, res) => {
   res.render("index");
 });
 export default app;
