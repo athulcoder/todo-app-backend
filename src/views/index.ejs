@@ -6,6 +6,27 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>HOME PAGE OF TODO</h1>
+    <h1>WELCOME <%= user.fullName %></h1>
+    <button
+      class="logout"
+      style="
+        padding: 10px;
+        width: 200px;
+        border: none;
+        background-color: red;
+        color: white;
+
+        cursor: pointer;
+      "
+    >
+      Logout me
+    </button>
   </body>
+  <script>
+    let logoutButton = document.querySelector(".logout");
+    logoutButton.addEventListener("click", async () => {
+      let response = await fetch("/user/logout");
+      console.log(response.json());
+    });
+  </script>
 </html>

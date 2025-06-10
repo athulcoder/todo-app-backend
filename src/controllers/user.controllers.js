@@ -16,9 +16,7 @@ const registerUser = async (req, res) => {
   let existedUser = await User.findOne({ $or: [{ username }, { email }] });
 
   if (existedUser) {
-    return res.status(409).json({
-      message: "User Already Exists",
-    });
+    return res.render("register");
   }
   // password hashing
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -72,4 +70,9 @@ const loginUser = async (req, res) => {
   res.redirect("/");
 };
 
-export { registerUser, loginUser };
+const logoutUser = async (req, res) => {
+  // res.cookie("sessionid", null);
+
+  res.redirect("/user/login");
+};
+export { registerUser, loginUser, logoutUser };

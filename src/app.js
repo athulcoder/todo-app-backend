@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { userRouter } from "./routes/user.routes.js";
 import multer from "multer";
-import { checkUserAuth } from "./middlewares/checkAuth.js";
+import { checkLogin, checkUserAuth } from "./middlewares/checkAuth.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
@@ -19,9 +19,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/user", update.none(), userRouter);
+app.use("/user", checkLogin, userRouter);
 
 app.get("/", checkUserAuth, (req, res) => {
-  res.render("index");
+  let user = req.user;
+  console.log(user);
+  res.render("index", { user });
 });
 export default app;

@@ -3,17 +3,115 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Registration Page</title>
+    <style>
+      body {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        width: 350px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 0.6rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus,
+      input[type="email"]:focus,
+      input[type="password"]:focus {
+        border-color: #2575fc;
+        outline: none;
+      }
+
+      button {
+        width: 100%;
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        color: white;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: linear-gradient(to right, #2575fc, #6a11cb);
+      }
+
+      .footer {
+        margin-top: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #888;
+      }
+
+      .footer a {
+        color: #2575fc;
+        text-decoration: none;
+      }
+
+      .error-message {
+        background-color: #ffe0e0;
+        color: #d9534f;
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
   </head>
+
   <body>
-    <form action="/user/login" method="post">
-      <label for="email">Email</label>
-      <input type="text" name="email" />
+    <div class="container">
+      <h2>Login</h2>
 
-      <label for="password">Password</label>
-      <input type="text" name="password" />
+      <form action="/user/login" method="POST">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
 
-      <input type="submit" value="Login in" />
-    </form>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+
+        <button type="submit">Register</button>
+      </form>
+      <div class="footer">
+        Don't have an account? <a href="/user/register">Sign up here</a>.
+      </div>
+    </div>
   </body>
 </html>
